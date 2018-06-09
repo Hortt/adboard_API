@@ -26,7 +26,10 @@ class FlaskAppWrapper(object):
         self.app.run()
 
     def add_url_rule(self, rule, endpoint=None, view_func=None, provide_automatic_options=None, **options):
-        self.app.add_url_rule(rule, endpoint, EndpointAction(view_func), provide_automatic_options, **options)
+
+        if view_func is not None:
+            view_func = EndpointAction(view_func)
+        self.app.add_url_rule(rule, endpoint, view_func, provide_automatic_options, **options)
 
     def index(self):
         if not self.check_auth():
