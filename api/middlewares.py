@@ -25,3 +25,42 @@ def check_auth():
         if len(present_maybe) > 0 and password_hash == present_maybe:
             return True
     return False
+
+
+def get_user_from_header():
+    user = request.headers.get('Authorization')
+    if user is not None and user.find(':') != -1:
+        separator_position = user.find(':')
+        user = user[:separator_position]
+    return user
+
+
+def action_callback(action):
+    def real_decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            username = get_user_from_header()
+            counter = db.incrby('hourly' + action + ':user:' + username, 1)
+            if counter is not None and counter == 1:
+                db.expire('hourly' + action + ':user:' + username, 360)
+            return func(*args, **kwargs)
+
+        return wrapper
+
+    return real_decorator
+
+
+def check_permission_callback(action):
+    def real_decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            username = get_user_from_header()
+            current_counter = db.get('hourly' + action + ':user:' + username)
+            if current_counter is not None and int(current_counter.decode('utf-8')) > 5:
+                return make_response(
+                    jsonify({'message': 'You\'ve reached the limit'}), 401)
+            return func(*args, **kwargs)
+
+        return wrapper
+
+    return real_decorator

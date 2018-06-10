@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request, make_response, Blueprint
-from api.middlewares import requires_auth
+from api.middlewares import requires_auth, check_permission_callback, action_callback
 from api.models import UserSchema, BoardSchema, CommentSchema
 from api import db as database
 from api.db import db as redis
@@ -53,6 +53,8 @@ def insert_board():
 
 @mod.route('/<board_id>/like', methods=['PUT'])
 @requires_auth
+@action_callback('like')
+@check_permission_callback('like')
 def like_board(board_id):
     board = database.get_board(board_id)
     if board is None:
@@ -64,6 +66,8 @@ def like_board(board_id):
 
 @mod.route('/<board_id>/insert_comment', methods=['POST'])
 @requires_auth
+@action_callback('comment')
+@check_permission_callback('comment')
 def insert_comment(board_id):
     inputs = request.get_json(request)
     comment = comment_schema.load(inputs)
@@ -72,11 +76,3 @@ def insert_comment(board_id):
     else:
         msg, code = comment.errors, 400
     return make_response(jsonify(msg), code)
-
-
-def get_user_from_header():
-    user = request.headers.get('Authorization')
-    if user is not None and user.find(':') != -1:
-        separator_position = user.find(':')
-        user = user[:separator_position]
-    return user
