@@ -1,23 +1,24 @@
-from flask import Flask, jsonify, request, make_response
-from app.models import UserSchema, BoardSchema, CommentSchema
-from app.middlewares import requires_auth
-from app import db as database
-from app.db import db as redis
+from flask import Flask, jsonify, request, make_response, Blueprint
+from api.middlewares import requires_auth
+from api.models import UserSchema, BoardSchema, CommentSchema
+from api import db as database
+from api.db import db as redis
 
-ad_board = Flask(__name__)
+mod = Blueprint('views', __name__)
+
 user_schema = UserSchema()
 board_schema = BoardSchema()
 comment_schema = CommentSchema()
 
 
-@ad_board.route('/', metods=['GET'])
+@mod.route('/', methods=['GET'])
 @requires_auth
 def index():
     boards = database.get_boards()
     return make_response(jsonify(boards), 200)
 
 
-@ad_board.route('/<board_id>', metods=['GET'])
+@mod.route('/<board_id>', methods=['GET'])
 @requires_auth
 def single_board(board_id):
     board = database.get_board(board_id)
@@ -27,8 +28,7 @@ def single_board(board_id):
         return make_response(jsonify(board), 200)
 
 
-@ad_board.route('/sign_up', metods=['POST'])
-@requires_auth
+@mod.route('/sign_up', methods=['POST'])
 def insert_user():
     inputs = request.get_json(request)
     user = user_schema.load(inputs)
@@ -39,7 +39,7 @@ def insert_user():
     return make_response(jsonify(msg), code)
 
 
-@ad_board.route('/', metods=['POST'])
+@mod.route('/', methods=['POST'])
 @requires_auth
 def insert_board():
     inputs = request.get_json(request)
@@ -51,7 +51,7 @@ def insert_board():
     return make_response(jsonify(msg), code)
 
 
-@ad_board.route('/<board_id>/like', metods=['PUT'])
+@mod.route('/<board_id>/like', methods=['PUT'])
 @requires_auth
 def like_board(board_id):
     board = database.get_board(board_id)
@@ -62,7 +62,7 @@ def like_board(board_id):
         return make_response(jsonify({'status': 'Success', 'count': likes}), 200)
 
 
-@ad_board.route('/<board_id>/insert_comment', metods=['POST'])
+@mod.route('/<board_id>/insert_comment', methods=['POST'])
 @requires_auth
 def insert_comment(board_id):
     inputs = request.get_json(request)

@@ -1,5 +1,6 @@
-import redis, hashlib
-from app.config import config
+import redis
+import hashlib
+from api.config import config
 
 try:
     db = redis.Redis(config['host'], config['port'])

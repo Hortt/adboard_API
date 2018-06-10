@@ -1,7 +1,7 @@
 import hashlib
 from functools import wraps
 from flask import request, jsonify, make_response
-from app.db import db
+from api.db import db
 
 
 def requires_auth(f):

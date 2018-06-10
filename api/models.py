@@ -1,5 +1,8 @@
 from marshmallow import fields, validate, Schema, post_load, ValidationError
 from datetime import datetime, timezone
+from flask import Blueprint
+
+mod = Blueprint('models', __name__)
 
 
 class User(object):
