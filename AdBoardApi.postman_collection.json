@@ -1,0 +1,156 @@
+{
+	"variables": [],
+	"info": {
+		"name": "AdBoardApi",
+		"_postman_id": "c01468d1-8d6d-19ae-4169-037a21de4830",
+		"description": "доска обьявлений только в виде *REST API на Flask* - нужно написать только API\nбез визуальной части. а также добавить:\n- авторизацию\n- лайки для обьявления\n- лимит количества комментариев и лайков для пользователя\n(5 лайков и 5 комментариев в час)\n\nПолный текст заания\n*Функционал/Endpoints*:\n1) Логин, Регистрация:\nsignup поля:\nusername. обязательное, 20 символов максимум.\npassword. обязательное, 20 символов максимум\nconfirm_password. обязательное, 20 символов максимум\n\nДля логина ко всем эндпоинтам передавать заголовок в формате\n```Authorization: {username}:{password}```\n\n(кто хочет может сделать Token based authorization  но это не обязательно)\n\nесли на любой из ниже приведенных эндпоинтов пришел неверный заголовок авторизации\nвыдавать 401 Unbauthorized.\n\n2)  Обьявления. - список обьявлений\n\n3)  Добавить    обьявление\nполя:\n- Имя Username: обязательное, 20 символов максимум\n- Название обьявления: обязательное, 50 символов максимум\n\n4)  Просмотреть обьявление\nВыводит информацию про обьявление\n- Создатель (creator)\n- Название обьявления\n- Дата создания\n- Комментарии\n\n5)  Добавить    комментарий к   обьявлению\nпараметры:\n- Имя Username(creator): обязательное, 30 символов максимум\n- Текст комментария (comment): обязательное, 255 символов максимум\n\n6) Лайк для обьявления\n7) Эндпоинты для добавления комментария и лайка должны иметь лимит по 5 лайков/комментариев от одного пользователя  в час.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://127.0.0.1:5000/sign_up",
+			"request": {
+				"url": "http://127.0.0.1:5000/sign_up",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/javascript",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"denn1111is111\", \"password\": \"sxsxsx\", \"confirm\":\"sxsxsx\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/",
+			"request": {
+				"url": "http://127.0.0.1:5000/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/javascript",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "1Dennis:sxsxsx123",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\": \"3Dennis\", \"password\": \"sxsxsx123\", \"confirm_password\":\"sxsxsx123\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/4",
+			"request": {
+				"url": "http://127.0.0.1:5000/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "1Dennis:sxsxsx123",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"author\": \"1Dennis\",\n        \"comment\": \"Lets listen some musicLets listen some musicLets listen some musicLets listen some musicLets listen some musicLets listen some musicLets listen some musicLets listen some music\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/",
+			"request": {
+				"url": "http://127.0.0.1:5000/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "1Dennis:sxsxsx123",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"author\": \"1Dessss2nnis\",\n        \"name\": \"Lets listen222sw23 s2om22222212e music\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/3322/like",
+			"request": {
+				"url": "http://127.0.0.1:5000/3322/like",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/javascript",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "1Dennis:sxsxsx123",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"author\": \"3Dennis\", \"comment\": \"sxqsxsx123confirm_password sxsxsx123\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:5000/1/insert_comment",
+			"request": {
+				"url": "http://127.0.0.1:5000/1/insert_comment",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/javascript",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "denn1111is111:sxsxsx",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"author\": \"denn1111is111\", \"comment\": \"sxsxsxc4wr3r3fff34erfdonfirmsxsxsx\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
