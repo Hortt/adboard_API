@@ -3,7 +3,7 @@
 	"info": {
 		"name": "AdBoardApi",
 		"_postman_id": "c01468d1-8d6d-19ae-4169-037a21de4830",
-		"description": "доска обьявлений только в виде *REST API на Flask* - нужно написать только API\nбез визуальной части. а также добавить:\n- авторизацию\n- лайки для обьявления\n- лимит количества комментариев и лайков для пользователя\n(5 лайков и 5 комментариев в час)\n\nПолный текст заания\n*Функционал/Endpoints*:\n1) Логин, Регистрация:\nsignup поля:\nusername. обязательное, 20 символов максимум.\npassword. обязательное, 20 символов максимум\nconfirm_password. обязательное, 20 символов максимум\n\nДля логина ко всем эндпоинтам передавать заголовок в формате\n```Authorization: {username}:{password}```\n\n(кто хочет может сделать Token based authorization  но это не обязательно)\n\nесли на любой из ниже приведенных эндпоинтов пришел неверный заголовок авторизации\nвыдавать 401 Unbauthorized.\n\n2)  Обьявления. - список обьявлений\n\n3)  Добавить    обьявление\nполя:\n- Имя Username: обязательное, 20 символов максимум\n- Название обьявления: обязательное, 50 символов максимум\n\n4)  Просмотреть обьявление\nВыводит информацию про обьявление\n- Создатель (creator)\n- Название обьявления\n- Дата создания\n- Комментарии\n\n5)  Добавить    комментарий к   обьявлению\nпараметры:\n- Имя Username(creator): обязательное, 30 символов максимум\n- Текст комментария (comment): обязательное, 255 символов максимум\n\n6) Лайк для обьявления\n7) Эндпоинты для добавления комментария и лайка должны иметь лимит по 5 лайков/комментариев от одного пользователя  в час.",
+		"description": "Доска обьявлений только в виде *REST API на Flask* - нужно написать только API\nбез визуальной части. а также добавить:\n- авторизацию\n- лайки для обьявления\n- лимит количества комментариев и лайков для пользователя\n(5 лайков и 5 комментариев в час)\n\nПолный текст заания\n*Функционал/Endpoints*:\n1) Логин, Регистрация:\nsignup поля:\nusername. обязательное, 20 символов максимум.\npassword. обязательное, 20 символов максимум\nconfirm_password. обязательное, 20 символов максимум \n\nДля логина ко всем эндпоинтам передавать заголовок в формате\n```Authorization: {username}:{password}```\n\n\n(кто хочет может сделать Token based authorization  но это не обязательно)\n\nесли на любой из ниже приведенных эндпоинтов пришел неверный заголовок авторизации\nвыдавать 401 Unbauthorized.\n\n2)  Обьявления. - список обьявлений\n\n3)  Добавить    обьявление\nполя:\n- Имя Username: обязательное, 20 символов максимум\n- Название обьявления: обязательное, 50 символов максимум\n\n4)  Просмотреть обьявление\nВыводит информацию про обьявление\n- Создатель (creator)\n- Название обьявления\n- Дата создания\n- Комментарии\n\n5)  Добавить    комментарий к   обьявлению\nпараметры:\n- Имя Username(creator): обязательное, 30 символов максимум\n- Текст комментария (comment): обязательное, 255 символов максимум\n\n6) Лайк для обьявления\n7) Эндпоинты для добавления комментария и лайка должны иметь лимит по 5 лайков/комментариев от одного пользователя  в час.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -21,11 +21,324 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"name\": \"denn1111is111\", \"password\": \"sxsxsx\", \"confirm\":\"sxsxsx\"}"
+					"raw": "{\"name\": \"Olaw\", \"password\": \"sxsxsx\", \"confirm\":\"sxsxsx\"}"
 				},
 				"description": ""
 			},
-			"response": []
+			"response": [
+				{
+					"id": "27f000e7-811d-4d60-b5f0-fa151fdb176e",
+					"name": "http://127.0.0.1:5000/sign_up",
+					"originalRequest": {
+						"url": "http://127.0.0.1:5000/sign_up",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/javascript",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"Olaw\", \"password\": \"sxsxsx\", \"confirm\":\"sxsxsx\"}"
+						}
+					},
+					"status": "BAD REQUEST",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "47",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Sun, 10 Jun 2018 21:06:43 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "server",
+							"key": "server",
+							"value": "Werkzeug/0.14.1 Python/3.5.2",
+							"description": "A name for the server"
+						}
+					],
+					"cookie": [],
+					"responseTime": 72,
+					"body": "{\n  \"name\": \"The username is already in use\"\n}\n"
+				},
+				{
+					"id": "3c833d10-7f1e-40ca-9d42-4e8e3a98290d",
+					"name": "http://127.0.0.1:5000/sign_up",
+					"originalRequest": {
+						"url": "http://127.0.0.1:5000/sign_up",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/javascript",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"Olaw\", \"password\": \"sxsxsx\", \"confirm\":\"wergdfgfd\"}"
+						}
+					},
+					"status": "BAD REQUEST",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "50",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Sun, 10 Jun 2018 21:08:15 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "server",
+							"key": "server",
+							"value": "Werkzeug/0.14.1 Python/3.5.2",
+							"description": "A name for the server"
+						}
+					],
+					"cookie": [],
+					"responseTime": 33,
+					"body": "{\n  \"confirm\": [\n    \"Paswords match error\"\n  ]\n}\n"
+				},
+				{
+					"id": "7e2d9540-1a2e-4ad0-acce-39380df2be0c",
+					"name": "http://127.0.0.1:5000/sign_up",
+					"originalRequest": {
+						"url": "http://127.0.0.1:5000/sign_up",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/javascript",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"Olaw\", \"password\": \"sxsxsx\", \"confirm\":\"sxsxsx\"}"
+						}
+					},
+					"status": "BAD REQUEST",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "50",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Sun, 10 Jun 2018 21:08:15 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "server",
+							"key": "server",
+							"value": "Werkzeug/0.14.1 Python/3.5.2",
+							"description": "A name for the server"
+						}
+					],
+					"cookie": [],
+					"responseTime": 33,
+					"body": "{\n  \"confirm\": [\n    \"Paswords match error\"\n  ]\n}\n"
+				},
+				{
+					"id": "624a5cf1-4e51-40f9-a285-7b503545e04f",
+					"name": "http://127.0.0.1:5000/sign_up",
+					"originalRequest": {
+						"url": "http://127.0.0.1:5000/sign_up",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/javascript",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"OlawOlsen\", \"password\": \"sxsxsx\", \"confirm\":\"sxsxsx\"}"
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "26",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Sun, 10 Jun 2018 21:11:54 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "server",
+							"key": "server",
+							"value": "Werkzeug/0.14.1 Python/3.5.2",
+							"description": "A name for the server"
+						}
+					],
+					"cookie": [],
+					"responseTime": 60,
+					"body": "{\n  \"status\": \"created\"\n}\n"
+				},
+				{
+					"id": "e68d82d7-13fc-4afc-8263-b5b81b0e1331",
+					"name": "http://127.0.0.1:5000/sign_up",
+					"originalRequest": {
+						"url": "http://127.0.0.1:5000/sign_up",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/javascript",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"tester\", \"password\": \"password\", \"confirm\":\"password\"}"
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "26",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Sun, 10 Jun 2018 21:18:30 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "server",
+							"key": "server",
+							"value": "Werkzeug/0.14.1 Python/3.5.2",
+							"description": "A name for the server"
+						}
+					],
+					"cookie": [],
+					"responseTime": 27,
+					"body": "{\n  \"status\": \"created\"\n}\n"
+				},
+				{
+					"id": "84838727-a24f-4593-aa66-200d4ccf6193",
+					"name": "http://127.0.0.1:5000/sign_up",
+					"originalRequest": {
+						"url": "http://127.0.0.1:5000/sign_up",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/javascript",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"Olaw\", \"password\": \"sxsxsx\", \"confirm\":\"sxsxsx\"}"
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "26",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Sun, 10 Jun 2018 21:18:30 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "server",
+							"key": "server",
+							"value": "Werkzeug/0.14.1 Python/3.5.2",
+							"description": "A name for the server"
+						}
+					],
+					"cookie": [],
+					"responseTime": 27,
+					"body": "{\n  \"status\": \"created\"\n}\n"
+				}
+			]
 		},
 		{
 			"name": "http://127.0.0.1:5000/",
@@ -40,7 +353,7 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "1Dennis:sxsxsx123",
+						"value": "tester:password",
 						"description": ""
 					}
 				],
@@ -50,17 +363,77 @@
 				},
 				"description": ""
 			},
-			"response": []
+			"response": [
+				{
+					"id": "a9cfcbd3-859c-43f5-be4f-720b544fbc56",
+					"name": "http://127.0.0.1:5000/",
+					"originalRequest": {
+						"url": "http://127.0.0.1:5000/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/javascript",
+								"description": "",
+								"warning": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "tester:password",
+								"description": "",
+								"warning": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\": \"3Dennis\", \"password\": \"sxsxsx123\", \"confirm_password\":\"sxsxsx123\"}"
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "144",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Sun, 10 Jun 2018 21:19:42 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "server",
+							"key": "server",
+							"value": "Werkzeug/0.14.1 Python/3.5.2",
+							"description": "A name for the server"
+						}
+					],
+					"cookie": [],
+					"responseTime": 28,
+					"body": "[\n  {\n    \"author\": \"tester\", \n    \"date\": \"2018-06-10 21:19:30.772077+00:00\", \n    \"id\": \"0\", \n    \"name\": \"HondaVRX 1999 Black Edition\"\n  }\n]\n"
+				}
+			]
 		},
 		{
-			"name": "http://127.0.0.1:5000/4",
+			"name": "http://127.0.0.1:5000/1",
 			"request": {
-				"url": "http://127.0.0.1:5000/1",
+				"url": "http://127.0.0.1:5000/0",
 				"method": "GET",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "1Dennis:sxsxsx123",
+						"value": "tester:password",
 						"description": ""
 					},
 					{
@@ -75,7 +448,67 @@
 				},
 				"description": ""
 			},
-			"response": []
+			"response": [
+				{
+					"id": "848dc362-00ec-4dfa-b752-2ede5aba2499",
+					"name": "http://127.0.0.1:5000/1",
+					"originalRequest": {
+						"url": "http://127.0.0.1:5000/0",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "tester:password",
+								"description": "",
+								"warning": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "",
+								"warning": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"author\": \"1Dennis\",\n        \"comment\": \"Lets listen some musicLets listen some musicLets listen some musicLets listen some musicLets listen some musicLets listen some musicLets listen some musicLets listen some music\"\n    }"
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "162",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Sun, 10 Jun 2018 21:20:15 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "server",
+							"key": "server",
+							"value": "Werkzeug/0.14.1 Python/3.5.2",
+							"description": "A name for the server"
+						}
+					],
+					"cookie": [],
+					"responseTime": 41,
+					"body": "{\n  \"author\": \"tester\", \n  \"comments\": [], \n  \"date\": \"2018-06-10 21:19:30.772077+00:00\", \n  \"id\": \"0\", \n  \"likes\": 0, \n  \"name\": \"HondaVRX 1999 Black Edition\"\n}\n"
+				}
+			]
 		},
 		{
 			"name": "http://127.0.0.1:5000/",
@@ -85,7 +518,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "1Dennis:sxsxsx123",
+						"value": "tester:password",
 						"description": ""
 					},
 					{
@@ -100,12 +533,72 @@
 				},
 				"description": ""
 			},
-			"response": []
+			"response": [
+				{
+					"id": "f8660c84-d430-4cab-a489-e2db108b9053",
+					"name": "http://127.0.0.1:5000/",
+					"originalRequest": {
+						"url": "http://127.0.0.1:5000/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "tester:password",
+								"description": "",
+								"warning": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "",
+								"warning": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"author\": \"tester\",\n        \"name\": \"HondaVRX 1999 Black Edition\"\n    }"
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "40",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Sun, 10 Jun 2018 21:19:30 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "server",
+							"key": "server",
+							"value": "Werkzeug/0.14.1 Python/3.5.2",
+							"description": "A name for the server"
+						}
+					],
+					"cookie": [],
+					"responseTime": 34,
+					"body": "{\n  \"id\": \"0\", \n  \"status\": \"created\"\n}\n"
+				}
+			]
 		},
 		{
-			"name": "http://127.0.0.1:5000/3322/like",
+			"name": "http://127.0.0.1:5000/0/like",
 			"request": {
-				"url": "http://127.0.0.1:5000/3322/like",
+				"url": "http://127.0.0.1:5000/0/like",
 				"method": "PUT",
 				"header": [
 					{
@@ -115,7 +608,7 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "1Dennis:sxsxsx123",
+						"value": "tester:password",
 						"description": ""
 					}
 				],
@@ -125,7 +618,67 @@
 				},
 				"description": ""
 			},
-			"response": []
+			"response": [
+				{
+					"id": "4e63392c-d85c-43c2-942f-4de79460893b",
+					"name": "http://127.0.0.1:5000/3322/like",
+					"originalRequest": {
+						"url": "http://127.0.0.1:5000/0/like",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/javascript",
+								"description": "",
+								"warning": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "tester:password",
+								"description": "",
+								"warning": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"author\": \"3Dennis\", \"comment\": \"sxqsxsx123confirm_password sxsxsx123\"}"
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "41",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Sun, 10 Jun 2018 21:21:41 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "server",
+							"key": "server",
+							"value": "Werkzeug/0.14.1 Python/3.5.2",
+							"description": "A name for the server"
+						}
+					],
+					"cookie": [],
+					"responseTime": 30,
+					"body": "{\n  \"count\": 1, \n  \"status\": \"Success\"\n}\n"
+				}
+			]
 		},
 		{
 			"name": "http://127.0.0.1:5000/1/insert_comment",
@@ -140,7 +693,7 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "denn1111is111:sxsxsx",
+						"value": "tester:password",
 						"description": ""
 					}
 				],
@@ -150,7 +703,67 @@
 				},
 				"description": ""
 			},
-			"response": []
+			"response": [
+				{
+					"id": "76b8b46a-3d26-4640-85cb-168c9c965353",
+					"name": "http://127.0.0.1:5000/1/insert_comment",
+					"originalRequest": {
+						"url": "http://127.0.0.1:5000/1/insert_comment",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/javascript",
+								"description": "",
+								"warning": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "tester:password",
+								"description": "",
+								"warning": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"author\": \"tester\", \"comment\": \"What is the price of this wonderfull motorcycle?\"}"
+						}
+					},
+					"status": "ACCEPTED",
+					"code": 202,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "60",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Sun, 10 Jun 2018 21:22:38 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "server",
+							"key": "server",
+							"value": "Werkzeug/0.14.1 Python/3.5.2",
+							"description": "A name for the server"
+						}
+					],
+					"cookie": [],
+					"responseTime": 36,
+					"body": "{\n  \"board_id\": \"1\", \n  \"id\": \"0\", \n  \"status\": \"created\"\n}\n"
+				}
+			]
 		}
 	]
 }
