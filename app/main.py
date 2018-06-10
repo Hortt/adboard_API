@@ -26,6 +26,7 @@ class AdBoardViews(object):
         boards = self.db.get_boards()
         return make_response(jsonify(boards), 200)
 
+    @AdBoardInspector.requires_auth
     def single_board(self, board_id):
         board = self.db.get_board(board_id)
         if board is None:

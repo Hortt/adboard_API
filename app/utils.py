@@ -1,6 +1,6 @@
 import redis, hashlib
 from functools import wraps
-from flask import request
+from flask import request, jsonify, make_response
 
 
 class AdBoardDB:
@@ -98,7 +98,7 @@ class AdBoardInspector():
         def decorated(*args, **kwargs):
             auth = AdBoardInspector.check_auth()
             if not auth:
-                return {'message': 'Authorization is required'}, 401
+                return make_response(jsonify({'message': 'Authorization is required'}), 401)
             return f(*args, **kwargs)
 
         return decorated
