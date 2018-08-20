@@ -71,7 +71,7 @@ def insert_board(board):
 def insert_comment(board_id, comment):
     comments = db.keys('commentboard' + board_id + ":*")
     comment_key = str(len(comments))
-    comments_key = 'commentboard' + board_id + ':' + comment_key
+    comments_key = 'commentboard{}:{}'.format(board_id, comment_key)
     db.set('author:' + comments_key, comment.author)
     db.set(comments_key, comment.comment)
     return {'status': 'created', 'id': comment_key, 'board_id': board_id}, 202
