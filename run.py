@@ -1,2 +1,3 @@
 from api import app
-app.run(debug=True)
+from api import config
+app.run(debug=config.debug)

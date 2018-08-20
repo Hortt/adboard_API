@@ -1,0 +1,13 @@
+*.pyc
+*.sqlite3
+
+.idea/
+.env/
+env/
+__pycache__/*
+venv
+local_settings.py
+staticfiles/
+mediafiles/
+html/
+coliens_aws.pem
